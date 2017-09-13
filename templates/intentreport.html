@@ -59,12 +59,38 @@ button.btn.waves-effect.waves-light {
     <div class="nav-wrapper">
       <a href="/" class="brand-logo center">Hilti Chatbot Admin Portal</a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="intentreport.html">Intent Verification</a></li>
+        <li class="active"><a href="intentreport.html">Intent Verification</a></li>
         <li><a href="productreport.html">Product Verification</a></li>
-        <li><a href="analytics">Analytics</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
       </ul>
     </div>
-  </nav>
+</nav>
+
+<table class="striped">
+  <thead>
+    <tr>
+        <th>User Name</th>
+        <th>Query</th>
+        <th>Reported Intent</th>
+        <th>System Intent</th>
+        <th>Approve</th>
+        <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in x %}
+    <tr>
+      <td>{{ row[0] }}</td>
+      <td>{{ row[1] }}</td>
+      <td>{{ row[2] }}</td>
+      <td>{{ row[3] }}</td>
+      <td><a class="btn waves-effect waves-light" href="{{row[4]}}">Approve</a></td>
+      <td>{{ row[6] }}</td>
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
 
 </body>
 </html>
