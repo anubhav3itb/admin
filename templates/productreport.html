@@ -82,14 +82,42 @@ button.btn.waves-effect.waves-light {
       <td>{{ row[0] }}</td>
       <td>{{ row[1] }}</td>
       <td>{{ row[2] }}</td>
-      <td><a class="btn waves-effect waves-light" href="{{row[3]}}">Approve</a></td>
+      <td><a class="btn waves-effect waves-light approve" onclick="setApproval(this)" data-href="{{row[3]}}"{% if row[4]=="YES" %} disabled{% endif %}>Approve</a></td>
       <td>{{ row[5] }}</td>
     </tr>
 {% endfor %}
 
-  </tbody>
-</table>
 
+  </tbody>
+
+</table>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+  // (function(){
+  //   ll = document.querySelectorAll('.approve');
+  //   var arr = [...ll];
+  //   arr.forEach(function (elem){ 
+  //     $(elem).on('click', function(e){
+  //       target = e.target;
+  //       $.ajax({
+  //         type: 'GET',
+  //         dataType: "jsonp",
+  //         crossOrigin: true,
+  //         url: target.dataset.href,
+  //         success: function(){
+  //             console.log("hello")
+  //             window.location.reload();
+  //         }
+  //       })
+  //     });
+  //   });
+  // })();
+  function setApproval(elem){
+    $.get(elem.dataset.href,function(){
+        window.location.reload();
+    })
+  };
+</script>
 </body>
 </html>
 
