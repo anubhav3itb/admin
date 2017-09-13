@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     data = requests.get('http://128.199.240.195:5000/getAllIntentReport').content
     data = ast.literal_eval(data)
-    x = zip(data['user_name'], data['user_query'], data['user_intent'], data['reported_intent'], data['link'])
+    x = zip(data['user_name'], data['user_query'], data['user_intent'], data['reported_intent'], data['link'], data['approved'], data['message'])
     return render_template('index.html',
                             title='Intent Reports',
                             x=x)
