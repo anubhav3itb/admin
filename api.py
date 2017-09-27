@@ -33,6 +33,9 @@ def productReport():
                             title='Product Reports',
                             x=x)
 
+@app.route('/analytics.html')
+def analyticsReport():
+	return render_template('analytics.html', title='Analytics')
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)

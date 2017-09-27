@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="/static/css/bootstrap-responsive.min.css">
+
+<style type="text/css">
+html {
+  line-height: 5;
+}
+table[Attributes Style] {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+    border-left-color: rgb(255, 0, 0);
+    float: left;
+}
+
+table#table1 {
+    width: 10px;
+}
+
+table#table2 {
+    width: 10px;
+}
+
+button.btn.waves-effect.waves-light {
+    margin-left: 17cm;
+}
+
+</style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {packages: ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+google.charts.setOnLoadCallback(drawIntentChart);
+
+ function drawChart() {
+   // Define the chart to be drawn.
+   var data = new google.visualization.DataTable();
+   data.addColumn('string', 'Products');
+   data.addColumn('number', 'Tools Usage');
+   data.addRows([
+     ['PD5 MP2', 34],
+     ['DD 150', 11],
+     ['TEX M8', 10],
+     ['Other', 4]
+   ]);
+   // Set chart options
+    var piechart_options = {'title':'Pie Chart: Tools Usage Report',
+                   'width':500,
+                   'height':400};
+   // Instantiate and draw the chart.
+   var piechart = new google.visualization.PieChart(document.getElementById('toolUsage_piechart_div'));
+   piechart.draw(data, piechart_options);
+
+   var barchart_options = {title:'Bar Chart: Tools Usage Report',
+                       width:500,
+                       height:400,
+                       legend: 'none'};
+    var barchart = new google.visualization.BarChart(document.getElementById('toolUsage_barchart_div'));
+    barchart.draw(data, barchart_options);
+ }
+
+
+ function drawIntentChart() {
+   // Define the chart to be drawn.
+   var data = new google.visualization.DataTable();
+   data.addColumn('string', 'Intents');
+   data.addColumn('number', 'Intents Usage');
+   data.addRows([
+     ['Price', 38],
+     ['Features', 21],
+     ['Documents', 17],
+     ['Images', 11],
+     ['Videos', 5],
+     ['Tutorials', 8]
+   ]);
+   // Set chart options
+    var piechart_options = {'title':'Pie Chart: Intents Usage Report',
+                   'width':500,
+                   'height':400};
+   // Instantiate and draw the chart.
+   var piechart = new google.visualization.PieChart(document.getElementById('intentUsage_piechart_div'));
+   piechart.draw(data, piechart_options);
+
+   var barchart_options = {title:'Bar Chart: Intents Usage Report',
+                       width:500,
+                       height:400,
+                       legend: 'none'};
+    var barchart = new google.visualization.BarChart(document.getElementById('intentUsage_barchart_div'));
+    barchart.draw(data, barchart_options);
+ }
+ </script>
+
+<script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Country', 'Popularity'],
+          ['Germany', 200],
+          ['United States', 300],
+          ['Brazil', 400],
+          ['Canada', 500],
+          ['France', 600],
+          ['RU', 700]
+        ]);
+
+        var options = {'title':'Popularity of PD5',
+                       'width':1150,
+                       'height':550};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+
+
+  </script>
+
+</head>
+
+<body>
+
+  <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo center">Hilti Chatbot Admin Portal</a>
+        <ul class="left hide-on-med-and-down">
+          <li><a href="intentreport.html">Intent Verification</a></li>
+          <li><a href="productreport.html">Product Verification</a></li>
+          <li class="active"><a href="analytics.html">Analytics</a></li>
+        </ul>
+      </div>
+  </nav>
+
+  <table align="center">
+      <tr valign="top">
+        <td style="width: 90%;">
+          <div id="regions_div" ></div>
+        </td>
+        <td style="width: 10%;">
+          <!-- Dropdown Trigger -->
+          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Products</a>
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">PD5 Mp2</a></li>
+            <li><a href="#!">DD 150</a></li>
+            <li><a href="#!">TEX M8</a></li>
+            <li><a href="#!">DD 350</a></li>
+            <li><a href="#!">DX 460</a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+  <!-- <div id="regions_div" ></div> -->
+  <table class="columns">
+      <tr>
+        <td><div id="toolUsage_piechart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="toolUsage_barchart_div" style="border: 1px solid #ccc"></div></td>
+      </tr>
+      <tr>
+        <td><div id="intentUsage_piechart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="intentUsage_barchart_div" style="border: 1px solid #ccc"></div></td>
+      </tr>
+  </table>
+</body>
+</html>
