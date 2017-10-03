@@ -17,10 +17,24 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
 }
 </script>
-
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="/static/css/bootstrap-responsive.min.css">
+
+<script type="text/javascript">
+  $('.dropdown-button').dropdown({
+           inDuration: 300,
+           outDuration: 225,
+           constrain_width: true, 
+           hover: false, 
+           gutter: 0, 
+           belowOrigin: false 
+           }
+      );
+
+
+</script>
 
 <style type="text/css">
 html {
